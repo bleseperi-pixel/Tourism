@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wanderwise — AI Tourism Recommender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+<!-- ─── NAVBAR ──────────────────────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">🌍 <span>VRS Collage Of Engineering And Technology</span></div>
+    <div class="nav-tag">Powered by Random Forest ML</div>
+  </div>
+</nav>
+
+<!-- ─── HERO ────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Tourism package Recommendation</p>
+    <h1 class="hero-title">Discover Your<br/><em>Perfect Journey</em></h1>
+    <p class="hero-desc">Answer 5 questions. Our machine learning model analyses your preferences and recommends the ideal tourism package from 24 global destinations.</p>
+    <a href="#planner" class="hero-cta">Start Planning <span>→</span></a>
+  </div>
+  <div class="hero-visual">
+    <div class="globe-ring">
+      <div class="globe-emoji">🌍</div>
+      <div class="orbit-dot dot1">✈️</div>
+      <div class="orbit-dot dot2">🏖️</div>
+      <div class="orbit-dot dot3">🏔️</div>
+      <div class="orbit-dot dot4">🗼</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ────────────────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">24</span><span class="stat-label">Destinations</span></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><span class="stat-num">5</span><span class="stat-label">Preference Inputs</span></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><span class="stat-num">Random Forest</span><span class="stat-label">ML Algorithm</span></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><span class="stat-num">Top 3</span><span class="stat-label">Recommendations</span></div>
+</div>
+
+<!-- ─── FORM ─────────────────────────────────────────────────────────────── -->
+<section class="planner-section" id="planner">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Plan Your Trip</h2>
+      <p class="section-sub">Select your preferences below and let AI do the rest</p>
+    </div>
+
+    <div class="planner-grid">
+      <!-- FORM CARD -->
+      <div class="form-card">
+
+        <!-- Step 1: Budget -->
+        <div class="field-group">
+          <div class="field-label">
+            <span class="field-icon">💰</span>
+            <span>Budget Range</span>
+            <span class="field-step">01</span>
+          </div>
+          <div class="chip-row" data-field="budget">
+            <button class="chip" data-value="Low">
+              <span class="chip-icon">₹</span>
+              <span class="chip-name">Budget</span>
+              <span class="chip-sub">Under ₹30K</span>
+            </button>
+            <button class="chip active" data-value="Medium">
+              <span class="chip-icon">₹₹</span>
+              <span class="chip-name">Mid-Range</span>
+              <span class="chip-sub">₹30K – ₹1L</span>
+            </button>
+            <button class="chip" data-value="High">
+              <span class="chip-icon">₹₹₹</span>
+              <span class="chip-name">Luxury</span>
+              <span class="chip-sub">Above ₹1L</span>
+            </button>
+          </div>
+          <input type="hidden" id="f_budget" value="Medium"/>
+        </div>
+
+        <!-- Step 2: Duration -->
+        <div class="field-group">
+          <div class="field-label">
+            <span class="field-icon">📅</span>
+            <span>Trip Duration</span>
+            <span class="field-step">02</span>
+          </div>
+          <div class="slider-block">
+            <input type="range" id="f_duration" min="1" max="14" value="7" class="range-slider"/>
+            <div class="slider-labels">
+              <span>1 day</span>
+              <div class="slider-bubble" id="sliderBubble">7 days</div>
+              <span>14 days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Climate -->
+        <div class="field-group">
+          <div class="field-label">
+            <span class="field-icon">🌤️</span>
+            <span>Climate Preference</span>
+            <span class="field-step">03</span>
+          </div>
+          <div class="chip-row" data-field="climate_preference">
+            <button class="chip active" data-value="Tropical">
+              <span class="chip-icon">☀️</span>
+              <span class="chip-name">Tropical</span>
+              <span class="chip-sub">Warm & sunny</span>
+            </button>
+            <button class="chip" data-value="Cold">
+              <span class="chip-icon">❄️</span>
+              <span class="chip-name">Cold</span>
+              <span class="chip-sub">Snow & cool</span>
+            </button>
+            <button class="chip" data-value="Any">
+              <span class="chip-icon">🌈</span>
+              <span class="chip-name">Any</span>
+              <span class="chip-sub">No preference</span>
+            </button>
+          </div>
+          <input type="hidden" id="f_climate" value="Tropical"/>
+        </div>
+
+        <!-- Step 4: Activity -->
+        <div class="field-group">
+          <div class="field-label">
+            <span class="field-icon">🎯</span>
+            <span>Activity Type</span>
+            <span class="field-step">04</span>
+          </div>
+          <div class="chip-row chip-row--4" data-field="activity_preference">
+            <button class="chip active" data-value="Adventure">
+              <span class="chip-icon">🧗</span>
+              <span class="chip-name">Adventure</span>
+            </button>
+            <button class="chip" data-value="Relaxation">
+              <span class="chip-icon">🧘</span>
+              <span class="chip-name">Relaxation</span>
+            </button>
+            <button class="chip" data-value="Culture">
+              <span class="chip-icon">🏛️</span>
+              <span class="chip-name">Culture</span>
+            </button>
+            <button class="chip" data-value="Nature">
+              <span class="chip-icon">🌿</span>
+              <span class="chip-name">Nature</span>
+            </button>
+          </div>
+          <input type="hidden" id="f_activity" value="Adventure"/>
+        </div>
+
+        <!-- Step 5: Travel With -->
+        <div class="field-group">
+          <div class="field-label">
+            <span class="field-icon">👥</span>
+            <span>Travelling With</span>
+            <span class="field-step">05</span>
+          </div>
+          <div class="chip-row" data-field="travel_with">
+            <button class="chip active" data-value="Solo">
+              <span class="chip-icon">🧍</span>
+              <span class="chip-name">Solo</span>
+              <span class="chip-sub">Just me</span>
+            </button>
+            <button class="chip" data-value="Couple">
+              <span class="chip-icon">💑</span>
+              <span class="chip-name">Couple</span>
+              <span class="chip-sub">2 travellers</span>
+            </button>
+            <button class="chip" data-value="Family">
+              <span class="chip-icon">👨‍👩‍👧</span>
+              <span class="chip-name">Family</span>
+              <span class="chip-sub">Group trip</span>
+            </button>
+          </div>
+          <input type="hidden" id="f_travel" value="Solo"/>
+        </div>
+
+        <button class="btn-recommend" id="btnRecommend">
+          <span id="btnText">🔍 Get My Recommendations</span>
+          <span id="btnLoader" class="hidden">
+            <span class="spinner"></span> Analysing…
+          </span>
+        </button>
+      </div>
+
+      <!-- SIDEBAR INFO -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">How it Works</h3>
+          <ol class="how-list">
+            <li><strong>You select</strong> 5 travel preferences</li>
+            <li><strong>Flask backend</strong> receives your inputs</li>
+            <li><strong>Random Forest ML</strong> model predicts best matches</li>
+            <li><strong>Top 3 packages</strong> ranked by confidence score</li>
+          </ol>
+        </div>
+        <div class="sidebar-card algo-card">
+          <h3 class="sidebar-title">ML Algorithm</h3>
+          <div class="algo-badge">🌲 Random Forest Classifier</div>
+          <p class="algo-desc">Trained on 40+ samples across Budget, Duration, Climate, Activity & Travel type. Outputs probability scores for each of 24 destination packages.</p>
+          <div class="algo-stat"><span>200 decision trees</span><span>•</span><span>5 features</span><span>•</span><span>24 classes</span></div>
+        </div>
+        <div class="sidebar-card destinations-card">
+          <h3 class="sidebar-title">Sample Destinations</h3>
+          <div class="dest-pills">
+            <span>🏖️ Goa</span><span>❄️ Iceland</span><span>🗼 Paris</span>
+            <span>🤿 Maldives</span><span>🦁 Kenya</span><span>⛩️ Japan</span>
+            <span>🏛️ Machu Picchu</span><span>🌴 Bali</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESULTS ───────────────────────────────────────────────────────────── -->
+<section class="results-section hidden" id="resultsSection">
+  <div class="container">
+    <div class="results-header">
+      <h2 class="results-title">Your Personalised Recommendations</h2>
+      <p class="results-sub">Ranked by ML confidence — highest match first</p>
+    </div>
+    <div class="results-grid" id="resultsGrid"></div>
+    <div class="results-actions">
+      <button class="btn-reset" id="btnReset">← Change Preferences</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">🌍 Wanderwise</div>
+    <p class="footer-copy">Built with Flask · scikit-learn · Random Forest Classifier · HTML/CSS/JS</p>
+    <p class="footer-copy">Tourism Package Recommendation System — Mini Project</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
